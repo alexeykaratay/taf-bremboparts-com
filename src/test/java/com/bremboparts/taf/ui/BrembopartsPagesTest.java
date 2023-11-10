@@ -17,12 +17,9 @@ public class BrembopartsPagesTest extends BaseTest {
 
     @DisplayName("Search brake disk for auto")
     @Test
-    public void TestAuto() throws InterruptedException {
+    public void TestAuto() {
         StepAutoParts.openHomePageAndSendKeysAutoParameters();
-        Thread.sleep(5000);
     }
-
-
 
 
 }

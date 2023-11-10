@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Wait;
 
 public class HomePage {
     private WebDriver driver;
@@ -16,18 +17,20 @@ public class HomePage {
     private WebElement textCopyrightWebElement;
     @FindBy(xpath = "//button[text()='Принять все']")
     private WebElement buttonAcceptCookieWebElement;
-    @FindBy(xpath = "//button[@aria-label='Confirm and close']")
+    @FindBy(xpath = "//div[@class='actions']/button[1]")
     private WebElement buttonCloseCurrentRegionWebElement;
     @FindBy(xpath = "//div[@class='actions']/div[2]/button")
     private WebElement buttonTurnOffNotificationsWebElement;
     @FindBy(xpath = "//input[@id='BrandCode']")
     private WebElement inputBrandCodeWebElement;
-    @FindBy (xpath = "//input[@id='ModelCode']")
+    @FindBy(xpath = "//input[@id='ModelCode']")
     private WebElement inputModelCodeWebElement;
-    @FindBy (xpath = "//input[@id='TypeCode']")
+    @FindBy(xpath = "//input[@id='TypeCode']")
     private WebElement inputTypeCodeWebElement;
-    @FindBy(xpath = "/div[@class='row search-result'][3]/span[1]")
+    @FindBy(xpath = "//div[@class='row search-result'][3]/span[1]")
     private WebElement selectTypeNameModelWebElement;
+    @FindBy(xpath = "//button[@id='SubmitType']")
+    private WebElement buttonSearchWebElement;
 
 
     public HomePage() {
@@ -40,33 +43,26 @@ public class HomePage {
         log.info("open Home page Brembo Parts");
         clickButtonAcceptCookie();
         clickButtonCurrentRegion();
-        clickButtonTurnOffNotifications();
-    }
-
-    public void sendKeysBrandModelTypeParameters(){
-        sendKeysBrandAndModel("HONDA", "CIVIC VI Coupe (EJ, EM1) 03.96 - 12.00");
-        try {
-            inputTypeCodeWebElement.click();
-              inputTypeCodeWebElement.click();
-              selectTypeNameModelWebElement.click();
-
-            log.info("type name written down");
-        } catch (Exception e){
-            log.error("type name not written down");
-        }
 
     }
 
-    public void sendKeysBrandAndModel(String brand, String model ){
-        try {
-            inputBrandCodeWebElement.sendKeys(brand);
-            inputModelCodeWebElement.click();
-            inputModelCodeWebElement.sendKeys(model);
+    public void sendKeysBrandModelTypeParameters() {
 
-            log.info("brand name written down");
-        } catch (Exception e){
-            log.error("brand name not written down");
-        }
+        sendKeysBrandAndModelAndType("HONDA", "CIVIC VI Coupe (EJ, EM1) 03.96 - 12.00", "1.6 i Vtec (EM1) (92 kW/125 CV) 03.96 - 03.00");
+        log.info("type name written down");
+
+    }
+
+    public void sendKeysBrandAndModelAndType(String brand, String model, String type) {
+        inputBrandCodeWebElement.sendKeys(brand);
+        Util.sendKeysAndWaitElement(inputModelCodeWebElement, model);
+        Util.sendKeysAndWaitElement(inputTypeCodeWebElement, type);
+        log.info("brand, model, type:  written down");
+    }
+
+    public void clickButtonSearch() {
+        Util.waitFor(0.36);
+        buttonSearchWebElement.click();
     }
 
     public String geTextCopyrightHomePage() {
@@ -74,29 +70,21 @@ public class HomePage {
     }
 
     public void clickButtonAcceptCookie() {
-        try {
-            buttonAcceptCookieWebElement.click();
-            log.info("the cookie window is closed");
-        } catch (Exception e) {
-            log.error("The cookie window is not closed");
-        }
+        buttonAcceptCookieWebElement.click();
+        log.info("the cookie window is closed");
     }
 
     public void clickButtonCurrentRegion() {
-        try {
-            Util.clickAndWaitElement(buttonCloseCurrentRegionWebElement);
-            log.info("the country selection window is closed");
-        } catch (Exception e){
-            log.error("the country selection window is not closed");
-        }
+        buttonCloseCurrentRegionWebElement.click();
+        log.info("the country selection window is closed");
     }
 
     public void clickButtonTurnOffNotifications() {
         try {
             Util.clickAndWaitElement(buttonTurnOffNotificationsWebElement);
             log.info("notification window is closed");
-        } catch (Exception e){
-            log.error("notification window is not closed");
+        }catch (Exception e){
+            log.info("notification window is not opened");
         }
     }
 }
