@@ -4,18 +4,23 @@ import com.bremboparts.taf.taf.driver.Driver;
 import com.bremboparts.taf.taf.util.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Wait;
 
 public class HomePage {
     private WebDriver driver;
     private static final Logger log = LogManager.getLogger();
+    JavascriptExecutor js;
     @FindBy(xpath = "//div[@id='app']/footer/div/div[2]/span[1]")
     private WebElement textCopyrightWebElement;
-    @FindBy(xpath = "//button[text()='Принять все']")
+    @FindBy(xpath = "//nav[@data-type='nav']/div[5]/a")
+    private WebElement buttonSupportWebElement;
+    @FindBy(xpath = "//div[@data-type='account']")
+    private WebElement buttonAccauntWebElement;
+    @FindBy(xpath = "//button[text()='Accept all']")
     private WebElement buttonAcceptCookieWebElement;
     @FindBy(xpath = "//div[@class='actions']/button[1]")
     private WebElement buttonCloseCurrentRegionWebElement;
@@ -27,10 +32,30 @@ public class HomePage {
     private WebElement inputModelCodeWebElement;
     @FindBy(xpath = "//input[@id='TypeCode']")
     private WebElement inputTypeCodeWebElement;
+    @FindBy(xpath = "//input[@id='CCmCode']")
+    private WebElement inputDisplacementWebElement;
+    @FindBy(xpath = "//input[@id='YearCode']")
+    private WebElement inputYeartWebElement;
     @FindBy(xpath = "//div[@class='row search-result'][3]/span[1]")
     private WebElement selectTypeNameModelWebElement;
     @FindBy(xpath = "//button[@id='SubmitType']")
     private WebElement buttonSearchWebElement;
+    @FindBy(xpath = "//div[@class='list-data']/div[4]/span[1]")
+    protected static WebElement selectTypeForBrandAndModel;
+    @FindBy(xpath = "//span[text()='HONDA']")
+    protected static WebElement selectHondaBrandWebElement;
+    @FindBy(xpath = "//span[text()='CIVIC VI Coupe (EJ, EM1) ']")
+    protected static WebElement selectModelForHondaWebElement;
+    @FindBy(xpath = "//span[text()='HONDA']")
+    protected static WebElement selectHondaMotoBrandWebElement;
+    @FindBy(xpath = "//span[text()='CR E']")
+    protected static WebElement selectHondaMotoModelWebElement;
+    @FindBy(xpath = "//div[@class='item search-result']/span")
+    protected static WebElement selectHondaMotoDisplacementWebElement;
+    @FindBy(xpath = "//span[@class='voice'][starts-with(text(),'2001')]")
+    protected static WebElement selectHondaMotoYearWebElement;
+    @FindBy(xpath = "//button[@aria-label='Bike']")
+    private WebElement buttonMotoWebElement;
 
 
     public HomePage() {
@@ -39,30 +64,41 @@ public class HomePage {
     }
 
     public void openHomePage() {
-        driver.get("https://www.bremboparts.com/");
+        driver.get("https://www.bremboparts.com/europe/en");
         log.info("open Home page Brembo Parts");
         clickButtonAcceptCookie();
         clickButtonCurrentRegion();
+        log.info("cookie and region window is closed");
 
     }
 
-    public void sendKeysBrandModelTypeParameters() {
-
-        sendKeysBrandAndModelAndType("HONDA", "CIVIC VI Coupe (EJ, EM1) 03.96 - 12.00", "1.6 i Vtec (EM1) (92 kW/125 CV) 03.96 - 03.00");
-        log.info("type name written down");
-
-    }
-
-    public void sendKeysBrandAndModelAndType(String brand, String model, String type) {
-        inputBrandCodeWebElement.sendKeys(brand);
-        Util.sendKeysAndWaitElement(inputModelCodeWebElement, model);
-        Util.sendKeysAndWaitElement(inputTypeCodeWebElement, type);
+    public void chooseBrandAndModelAndType(WebElement brand, WebElement model, WebElement type) {
+        inputBrandCodeWebElement.click();
+        Util.waitFor(10);
+        Util.waitAndClick(brand);
+        inputModelCodeWebElement.click();
+        Util.waitAndClick(model);
+        inputTypeCodeWebElement.click();
+        Util.waitAndClick(type);
         log.info("brand, model, type:  written down");
     }
 
+    public void choseBrandAndModelAndDisplacementAndYear(WebElement brand, WebElement model, WebElement displacement, WebElement year){
+        inputBrandCodeWebElement.click();
+        Util.waitAndClick(brand);
+        inputModelCodeWebElement.click();
+        Util.waitAndClick(model);
+        inputDisplacementWebElement.click();
+        Util.waitAndClick(displacement);
+        inputYeartWebElement.click();
+        Util.waitAndClick(year);
+        log.info("brand, model, type, displacement, year for moto:  written down");
+
+    }
+
     public void clickButtonSearch() {
-        Util.waitFor(0.36);
         buttonSearchWebElement.click();
+        log.info("search button pressed");
     }
 
     public String geTextCopyrightHomePage() {
@@ -70,21 +106,32 @@ public class HomePage {
     }
 
     public void clickButtonAcceptCookie() {
-        buttonAcceptCookieWebElement.click();
+        Util.waitAndClick(buttonAcceptCookieWebElement);
         log.info("the cookie window is closed");
     }
 
     public void clickButtonCurrentRegion() {
-        buttonCloseCurrentRegionWebElement.click();
+        Util.waitAndClick(buttonCloseCurrentRegionWebElement);
         log.info("the country selection window is closed");
     }
 
     public void clickButtonTurnOffNotifications() {
-        try {
-            Util.clickAndWaitElement(buttonTurnOffNotificationsWebElement);
-            log.info("notification window is closed");
-        }catch (Exception e){
-            log.info("notification window is not opened");
-        }
+        Util.waitAndClick(buttonTurnOffNotificationsWebElement);
+        log.info("the notifications window is closed");
+    }
+
+    public void clickButtonMoto(){
+        buttonMotoWebElement.click();
+        log.info("bike button pressed");
+    }
+
+    public void clickButtonSupport(){
+        Util.waitAndClick(buttonSupportWebElement);
+        log.info("support button pressed");
+    }
+
+    public void clickButtonAccount(){
+        Util.waitAndClick(buttonAccauntWebElement);
+        log.info("account button pressed");
     }
 }

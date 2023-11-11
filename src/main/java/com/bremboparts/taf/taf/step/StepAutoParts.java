@@ -1,14 +1,16 @@
 package com.bremboparts.taf.taf.step;
 
+import com.bremboparts.taf.taf.po.CatalogAutoPage;
 import com.bremboparts.taf.taf.po.HomePage;
-import com.bremboparts.taf.taf.util.Util;
 
-public class StepAutoParts {
-    public static void openHomePageAndSendKeysAutoParameters(){
+public class StepAutoParts extends HomePage {
+    public static void openHomePageAndSendKeysAutoParametersAndClickButtonPrimeAndClickButtonCompabilible(){
         HomePage homePage = new HomePage();
         homePage.openHomePage();
-        homePage.sendKeysBrandModelTypeParameters();
+        homePage.chooseBrandAndModelAndType(selectHondaBrandWebElement, selectModelForHondaWebElement,selectTypeForBrandAndModel);
         homePage.clickButtonSearch();
-        Util.waitFor(5);
+        CatalogAutoPage catalogAutoPage = new CatalogAutoPage();
+        catalogAutoPage.clickButtonBrakeDiskFrontInfo();
+        catalogAutoPage.ClickButtonCompatibleAuto();
     }
 }
