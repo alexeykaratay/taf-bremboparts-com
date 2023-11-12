@@ -7,7 +7,7 @@ import com.bremboparts.taf.taf.util.Util;
 import java.nio.file.Watchable;
 
 public class StepSupport {
-    public static void openHomePageAndClickSupportButtonAndSendKeysSearchLineAndClickButtonSearch(){
+    public static void openHomePageAndClickSupportButtonAndSendKeysSearchLineAndClickButtonSearch() {
         HomePage homePage = new HomePage();
         homePage.openHomePage();
         homePage.clickButtonSupport();

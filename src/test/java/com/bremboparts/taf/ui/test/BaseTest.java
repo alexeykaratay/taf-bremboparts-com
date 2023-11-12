@@ -1,4 +1,4 @@
-package com.bremboparts.taf.ui;
+package com.bremboparts.taf.ui.test;
 
 import com.bremboparts.taf.taf.driver.Driver;
 import org.junit.jupiter.api.AfterEach;

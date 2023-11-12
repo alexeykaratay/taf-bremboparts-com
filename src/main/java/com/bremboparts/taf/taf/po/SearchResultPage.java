@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,14 +15,16 @@ public class SearchResultPage {
     WebDriver driver;
     private static final Logger log = LogManager.getLogger();
     @FindBy(xpath = "//h2[@class='title mrg']")
-    private List <WebElement> blocksSearchResultWebElement;
+    private List<WebElement> blocksSearchResultWebElement;
 
     public SearchResultPage() {
         this.driver = Driver.getDriver();
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
-    public List<WebElement> getSearchResultFromSupport(){
-        return Util.WaitElementCustom(blocksSearchResultWebElement);
+    public List<WebElement> getSearchResultFromSupport() {
+        List<WebElement> elements = Util.WaitElementCustom(blocksSearchResultWebElement);
+        log.info("list created result:" + Util.getListString(blocksSearchResultWebElement));
+        return elements;
     }
 }

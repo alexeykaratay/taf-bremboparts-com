@@ -4,7 +4,7 @@ import com.bremboparts.taf.taf.po.CatalogMotoPage;
 import com.bremboparts.taf.taf.po.HomePage;
 
 public class StepMotoParts extends HomePage {
-    public static void openHomePageAndClickButtonMotoAndChoseBrandAndModelAndDisplacementAndYearAndClickButtonSearchAndClickButtonBrakeDiskMotoFrontInfoAndClickButtonCompatibleMotoAndButtonCompatibleMotoHonda(){
+    public static void openHomePageAndClickButtonMotoAndChoseBrandAndModelAndDisplacementAndYearAndClickButtonSearchAndClickButtonBrakeDiskMotoFrontInfoAndClickButtonCompatibleMotoAndButtonCompatibleMotoHonda() {
         HomePage homePage = new HomePage();
         homePage.openHomePage();
         homePage.clickButtonMoto();
@@ -14,7 +14,5 @@ public class StepMotoParts extends HomePage {
         catalogMotoPage.clickButtonBrakeDiskMotoFrontInfo();
         catalogMotoPage.clickButtonCompatibleMoto();
         catalogMotoPage.buttonCompatibleMotoHonda();
-
-
     }
 }

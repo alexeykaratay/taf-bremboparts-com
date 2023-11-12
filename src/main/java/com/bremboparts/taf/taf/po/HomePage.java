@@ -4,7 +4,6 @@ import com.bremboparts.taf.taf.driver.Driver;
 import com.bremboparts.taf.taf.util.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
     private WebDriver driver;
     private static final Logger log = LogManager.getLogger();
-    JavascriptExecutor js;
     @FindBy(xpath = "//div[@id='app']/footer/div/div[2]/span[1]")
     private WebElement textCopyrightWebElement;
     @FindBy(xpath = "//nav[@data-type='nav']/div[5]/a")
@@ -68,8 +66,6 @@ public class HomePage {
         log.info("open Home page Brembo Parts");
         clickButtonAcceptCookie();
         clickButtonCurrentRegion();
-        log.info("cookie and region window is closed");
-
     }
 
     public void chooseBrandAndModelAndType(WebElement brand, WebElement model, WebElement type) {

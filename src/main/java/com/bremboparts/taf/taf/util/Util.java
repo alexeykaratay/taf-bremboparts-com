@@ -34,6 +34,11 @@ public class Util {
                 .until(ExpectedConditions.visibilityOf(webElement))
                 .click();
     }
+    public static String waitAndGetText(WebElement webElement) {
+        return new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOf(webElement))
+                .getText();
+    }
     public static void waitAndSendKeys(WebElement webElement, String keys) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOf(webElement))

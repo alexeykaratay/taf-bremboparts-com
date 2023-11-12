@@ -46,7 +46,7 @@ public class CatalogMotoPage {
     }
 
     public void buttonCompatibleMotoHonda() {
-        Util.waitFor(2);
+        Util.waitFor(1);
         Util.clickAndWaitElementCustom(buttonCompatibleMotoHondaWebElement);
         log.info("compatible moto honda pressed");
     }
