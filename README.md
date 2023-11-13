@@ -122,7 +122,7 @@ After setting pom.xml, page objects are created and the driver is connected usin
 
 After the tests are completed, an Allure Report is created through which we can view information about our tests; it opens in a browser window.
 
-#Result
+## Result
 
 The result of our tests will be the Allure Report in the browser window where we will see that our tests are running and checks are passing
 
