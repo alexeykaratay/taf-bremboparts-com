@@ -111,11 +111,6 @@ public class HomePage {
         log.info("the country selection window is closed");
     }
 
-    public void clickButtonTurnOffNotifications() {
-        Util.waitAndClick(buttonTurnOffNotificationsWebElement);
-        log.info("the notifications window is closed");
-    }
-
     public void clickButtonMoto(){
         buttonMotoWebElement.click();
         log.info("bike button pressed");
