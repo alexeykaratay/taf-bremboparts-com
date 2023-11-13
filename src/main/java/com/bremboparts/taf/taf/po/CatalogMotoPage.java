@@ -50,11 +50,4 @@ public class CatalogMotoPage {
         Util.clickAndWaitElementCustom(buttonCompatibleMotoHondaWebElement);
         log.info("compatible moto honda pressed");
     }
-
-
-
-
-
-
-
 }

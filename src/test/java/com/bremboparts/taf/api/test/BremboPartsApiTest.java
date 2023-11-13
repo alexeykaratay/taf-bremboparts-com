@@ -23,7 +23,7 @@ public class BremboPartsApiTest {
 
     @DisplayName("Test API response contains search results ")
     @Test
-    public void testResponseSearchResult(){
+    public void testResponseSearchResult() {
         RestAssured.baseURI = "https://www.bremboparts.com/europe/en/support/search";
 
         Response response = RestAssured.given()

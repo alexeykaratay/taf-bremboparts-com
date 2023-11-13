@@ -45,6 +45,4 @@ public class StepLoginForm {
         loginFormPage.sendKeysPassword("");
         loginFormPage.clickButtonLogIn();
     }
-
-
 }

@@ -67,6 +67,4 @@ public class LoginFormPage {
         log.info("error message created: " + stringList);
         return result.toString().trim();
     }
-
-
 }

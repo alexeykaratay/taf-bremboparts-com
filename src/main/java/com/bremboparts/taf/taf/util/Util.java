@@ -34,11 +34,13 @@ public class Util {
                 .until(ExpectedConditions.visibilityOf(webElement))
                 .click();
     }
+
     public static String waitAndGetText(WebElement webElement) {
         return new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOf(webElement))
                 .getText();
     }
+
     public static void waitAndSendKeys(WebElement webElement, String keys) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOf(webElement))
@@ -55,12 +57,12 @@ public class Util {
 
     public static List<WebElement> WaitElementCustom(List<WebElement> element) {
         Util.waitFor(1.2);
-      new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
+        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfAllElements(element));
-      return element;
+        return element;
     }
 
-    public static List<String> getListString(List<WebElement> elements){
+    public static List<String> getListString(List<WebElement> elements) {
         List<String> textList = new ArrayList<>();
         for (WebElement element : elements) {
             String elementText = element.getText();
