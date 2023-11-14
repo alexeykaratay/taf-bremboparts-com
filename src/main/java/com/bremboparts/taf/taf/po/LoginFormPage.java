@@ -2,7 +2,6 @@ package com.bremboparts.taf.taf.po;
 
 import com.bremboparts.taf.taf.driver.Driver;
 import com.bremboparts.taf.taf.util.Util;
-import com.github.javafaker.Faker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

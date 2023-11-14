@@ -19,10 +19,9 @@ public class CatalogAutoPage {
     @FindBy(xpath = "//div[@class='button']")
     private List<WebElement> buttonCompatibleAutoListWebElement;
 
-    @FindBy(xpath = "//div[@id='ResultList']/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div")
+    @FindBy(xpath = "//div[@class='application-detail scrollbar']/div")
     private List<WebElement> listResultCompatibleAuto;
-    @FindBy(xpath = "//*[@id='ResultList']/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div[13]/div[1]")
-    private WebElement test;
+
 
     public CatalogAutoPage() {
         this.driver = Driver.getDriver();

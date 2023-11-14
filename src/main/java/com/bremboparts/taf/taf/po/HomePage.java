@@ -52,8 +52,17 @@ public class HomePage {
     protected static WebElement selectHondaMotoDisplacementWebElement;
     @FindBy(xpath = "//span[@class='voice'][starts-with(text(),'2001')]")
     protected static WebElement selectHondaMotoYearWebElement;
+    @FindBy(xpath = "//span[@class='voice'][starts-with(text(),'MACK')]")
+    protected static WebElement selectMackTrackBrandWebElement;
+    @FindBy(xpath = "//span[@class='voice'][starts-with(text(),'Midlum')]")
+    protected static WebElement selectMackTrackModelWebElement;
+    @FindBy(xpath = "//span[@class='col type-name'][starts-with(text(),'210')]")
+    protected static WebElement selectMackTrackTypeWebElement;
     @FindBy(xpath = "//button[@aria-label='Bike']")
     private WebElement buttonMotoWebElement;
+    @FindBy(xpath = "//button[@aria-label='Commercial vehicles, buses and axles']")
+    private WebElement buttonTrackWebElement;
+
 
 
     public HomePage() {
@@ -70,7 +79,6 @@ public class HomePage {
 
     public void chooseBrandAndModelAndType(WebElement brand, WebElement model, WebElement type) {
         inputBrandCodeWebElement.click();
-        Util.waitFor(10);
         Util.waitAndClick(brand);
         inputModelCodeWebElement.click();
         Util.waitAndClick(model);
@@ -89,7 +97,11 @@ public class HomePage {
         inputYeartWebElement.click();
         Util.waitAndClick(year);
         log.info("brand, model, type, displacement, year for moto:  written down");
+    }
 
+    public void clickButtonTrack(){
+        Util.waitAndClick(buttonTrackWebElement);
+        log.info("track button pressed");
     }
 
     public void clickButtonSearch() {

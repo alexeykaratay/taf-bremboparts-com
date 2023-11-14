@@ -70,4 +70,9 @@ public class Util {
         }
         return textList;
     }
+
+    public static void waitWebElement(WebElement webElement) {
+        new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOf(webElement));
+    }
 }

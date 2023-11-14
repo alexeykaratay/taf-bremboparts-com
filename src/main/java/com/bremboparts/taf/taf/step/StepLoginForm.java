@@ -2,7 +2,6 @@ package com.bremboparts.taf.taf.step;
 
 import com.bremboparts.taf.taf.po.HomePage;
 import com.bremboparts.taf.taf.po.LoginFormPage;
-import com.bremboparts.taf.taf.util.Util;
 import com.github.javafaker.Faker;
 
 public class StepLoginForm {
